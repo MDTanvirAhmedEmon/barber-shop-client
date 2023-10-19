@@ -1,10 +1,19 @@
 "use client";
 
+import { removeUserAccessToken } from "@/redux/features/user/userTokenSlice";
+import { useAppDispatch, useAppSelector } from "@/redux/hooks";
+import { decodedToken } from "@/utils/jwt";
 import { Bars3CenterLeftIcon, XMarkIcon } from "@heroicons/react/24/solid";
 import Link from "next/link";
+import { useRouter } from "next/navigation";
 import { useState } from "react";
-
 const Header = () => {
+  const { token } = useAppSelector((state) => state.userAccessToken);
+  const { role }: any = decodedToken(token);
+  console.log(role);
+  const dispatch = useAppDispatch();
+  const router = useRouter();
+
   const [menu, setMenu] = useState(false);
   return (
     <div className="bg-transparent z-[999]">
@@ -12,28 +21,68 @@ const Header = () => {
         <div className="flex items-center h-20 justify-between">
           <Link href={"/"}>
             <h1 className="text-4xl font-bold text-white cursor-pointer">
-            Barber
+              Bar<span className="text-primaryColor">b</span>er
             </h1>
           </Link>
           {/* desktop navbar */}
-          <div className="hidden md:block">
+          <div className="hidden md:block uppercase">
             <nav className="z-50">
-              <ul className="flex space-x-8 text-xl text-white ">
+              <ul className="flex space-x-8 text-md font-bold text-white ">
                 <Link href={"/"} className="cursor-pointer">
                   Home
                 </Link>
-                <Link href={"/about"} className="cursor-pointer">
+                <Link onClick={() => dispatch(removeUserAccessToken())} href={"/about"} className="cursor-pointer">
                   About
                 </Link>
-                <Link href={"/"} className="cursor-pointer">
-                  Offers
-                </Link>
-                <Link href={"/"} className="cursor-pointer">
-                  About
-                </Link>
-                <Link href={"/"} className="cursor-pointer">
-                  Contact
-                </Link>
+                {!token && (
+                  <Link href={"/services"} className="cursor-pointer">
+                    Services
+                  </Link>
+                )}
+
+                {token && role === "customer" ? (
+                  <>
+                    <Link href={"/services"} className="cursor-pointer">
+                      Services
+                    </Link>
+                    <Link href={"/profile"} className="cursor-pointer">
+                      Profile
+                    </Link>
+                  </>
+                ) : role === "admin" ? (
+                  <>
+                    <Link href={"/services"} className="cursor-pointer">
+                      Services
+                    </Link>
+
+                    <Link href="/admin" className="cursor-pointer">
+                      Admin Panel
+                    </Link>
+                  </>
+                ) : role === "super-admin" ? (
+                  <>
+                    <Link href={"/services"} className="cursor-pointer">
+                      Services
+                    </Link>
+
+                    <Link href="/super-admin/dashboard" className="cursor-pointer">
+                      Admin Panel
+                    </Link>
+                  </>
+                ) : role === "barber" ? (
+                  <Link href="/barber" className="cursor-pointer">
+                    Dashboard
+                  </Link>
+                ) : (
+                  <>
+                    <Link href="/login" className="cursor-pointer">
+                      Log In
+                    </Link>
+                    <Link href="/register" className="cursor-pointer">
+                      Register
+                    </Link>
+                  </>
+                )}
               </ul>
             </nav>
           </div>
@@ -70,27 +119,77 @@ const Header = () => {
                 >
                   About
                 </Link>
-                <Link
-                  href={"/"}
-                  className="cursor-pointer"
-                  onClick={() => setMenu(!menu)}
-                >
-                  Offers
-                </Link>
-                <Link
-                  href={"/"}
-                  className="cursor-pointer"
-                  onClick={() => setMenu(!menu)}
-                >
-                  About
-                </Link>
-                <Link
-                  href={"/"}
-                  className="cursor-pointer"
-                  onClick={() => setMenu(!menu)}
-                >
-                  Contact
-                </Link>
+                {!token && (
+                  <Link
+                    href={"/services"}
+                    onClick={() => setMenu(!menu)}
+                    className="cursor-pointer"
+                  >
+                    Services
+                  </Link>
+                )}
+
+                {token && role === "customer" ? (
+                  <>
+                    <Link
+                      href={"/services"}
+                      onClick={() => setMenu(!menu)}
+                      className="cursor-pointer"
+                    >
+                      Services
+                    </Link>
+                    <Link
+                      href={"/profile"}
+                      onClick={() => setMenu(!menu)}
+                      className="cursor-pointer"
+                    >
+                      Profile
+                    </Link>
+                  </>
+                ) : role === "admin" ? (
+                  <>
+                    <Link
+                      href={"/services"}
+                      onClick={() => setMenu(!menu)}
+                      className="cursor-pointer"
+                    >
+                      Services
+                    </Link>
+
+                    <Link
+                      href="/admin"
+                      onClick={() => setMenu(!menu)}
+                      className="cursor-pointer"
+                    >
+                      Admin Panel
+                    </Link>
+                  </>
+                ) : role === "barber" ? (
+                  <Link
+                    href="/barber"
+                    onClick={() => setMenu(!menu)}
+                    className="cursor-pointer"
+                  >
+                    Dashboard
+                  </Link>
+                ) : (
+                  <>
+                    <Link
+                      href="/login"
+                      onClick={() => setMenu(!menu)}
+                      className="cursor-pointer"
+                    >
+                      Log In
+                    </Link>
+                    <Link
+                      href="/register"
+                      onClick={() => setMenu(!menu)}
+                      className="cursor-pointer"
+                    >
+                      Register
+                    </Link>
+                  </>
+                )}
               </ul>
             </nav>
           </div>

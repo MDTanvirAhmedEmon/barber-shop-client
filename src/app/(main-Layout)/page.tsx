@@ -1,10 +1,14 @@
 
+import Hero from "@/components/HomeComponents/Hero";
+import HeroAbout from "@/components/HomeComponents/HeroAbout";
 
 
 export default function Home() {
+
   return (
     <div>
-      <h1 className="text-5xl">Hello Next js App</h1>
+      <Hero></Hero>
+      <HeroAbout></HeroAbout>
     </div>
   )
 }

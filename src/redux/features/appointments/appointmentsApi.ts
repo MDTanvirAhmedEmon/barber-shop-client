@@ -1,0 +1,22 @@
+import { api } from "@/redux/api/apiSlice";
+
+
+const appointmentsApi = api.injectEndpoints({
+    endpoints: (builder) => ({
+        getAllServices: builder.query({
+          query: () => '/services',
+        }),
+        getAllBarber: builder.query({
+          query: () => '/barbers',
+        }),
+        getAvailableTileSlot: builder.mutation({
+          query: (data) => ({
+            url: `/timeslot/available-timeslot`,
+            method: 'POST',
+            body: data,
+          }),
+        }),
+      }),
+})
+
+export const { useGetAllServicesQuery, useGetAllBarberQuery, useGetAvailableTileSlotMutation } = appointmentsApi;

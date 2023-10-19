@@ -1,5 +1,4 @@
-
-import Header from "@/components/Shared/Header"
+"use client"
 import MainFooter from "@/components/Shared/MainFooter"
 
 
@@ -8,10 +7,11 @@ export default function MainLayout({
 }: {
   children: React.ReactNode
 }) {
+
   return (
     <>
     <div className="bg-amber-700">
-    <Header></Header>
+
     </div>
 
         <div>{children}</div>
