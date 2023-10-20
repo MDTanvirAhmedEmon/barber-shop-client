@@ -17,7 +17,13 @@ const userApi = api.injectEndpoints({
             body: data,
           }),
         }),
+        getSingleCustomerInfo: builder.query({
+          query: () => `/customers/customer-info`,
+        }),
+        getCustomerAppointments: builder.query({
+          query: () => `/appointments/get-customer-appointment`,
+        }),
       }),
 })
 
-export const { useRegisterUserMutation, useLogInUserMutation } = userApi;
+export const { useRegisterUserMutation, useLogInUserMutation, useGetSingleCustomerInfoQuery, useGetCustomerAppointmentsQuery } = userApi;

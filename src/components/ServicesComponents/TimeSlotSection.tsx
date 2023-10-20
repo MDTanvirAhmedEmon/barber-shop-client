@@ -3,10 +3,9 @@ import Loading from "@/app/loading";
 import AvailableTimeSlot from "./AvailableTimeSlot";
 import { useState } from "react";
 import { useAppDispatch } from "@/redux/hooks";
-import { addTimeSlotId } from "@/redux/features/appointments/appointmentsSlice";
-import PrimaryButton from "../ui/PrimaryButton";
+import { addTimeSlot } from "@/redux/features/appointments/appointmentsSlice";
 import Link from "next/link";
-import { Button } from "flowbite-react";
+
 
 const TimeSlotSection = ({ TimeSlot, loading }: any) => {
   const [selectedSlot, setSelectedSlot] = useState(null);
@@ -15,12 +14,8 @@ const TimeSlotSection = ({ TimeSlot, loading }: any) => {
     setSelectedSlot(slotId);
   };
 
-  const handleSlotId = (id: any) => {
-    const payload = {
-      timeSlotId: id,
-    };
-
-    dispatch(addTimeSlotId(payload));
+  const handleSlotId = (slot: any) => {
+    dispatch(addTimeSlot(slot));
   };
 
   if (loading) {
@@ -35,7 +30,7 @@ const TimeSlotSection = ({ TimeSlot, loading }: any) => {
 
   return (
     <div>
-      <div className=" grid grid-cols-3 mb-10 gap-7 justify-center">
+      <div className=" grid grid-cols-1 mx-4 md:mx-0 md:grid-cols-3 mb-10 gap-7 justify-center">
         {TimeSlot?.data.map((slot: any) => (
           <AvailableTimeSlot
             isSelected={selectedSlot === slot.id}
@@ -48,7 +43,7 @@ const TimeSlotSection = ({ TimeSlot, loading }: any) => {
       </div>
       <div className="mb-24 mt-5 text-center">
           {
-            selectedSlot && <Link className="bg-secondaryColor text-white font-bold py-3 px-5 shadow-md shadow-slate-400" href={``}>Confirm Appointment</Link>
+            selectedSlot && <Link className="bg-secondaryColor text-white font-bold py-3 px-5 shadow-md shadow-slate-400" href={`/appointments/datepicker/barber/checkout`}>Check Out</Link>
           }
       </div>
     </div>

@@ -3,7 +3,6 @@
 import Loading from "@/app/loading";
 import SingleService from "@/components/ServicesComponents/SingleService";
 import Header from "@/components/Shared/Header";
-import BarberBreadcrumb from "@/components/ui/Breadcrumb";
 import { useGetAllServicesQuery } from "@/redux/features/appointments/appointmentsApi";
 
 const Service = () => {
@@ -36,7 +35,7 @@ const Service = () => {
           <Header></Header>
         </div>
       </div>
-      <BarberBreadcrumb></BarberBreadcrumb>
+
       <div className="py-20">
         <div className=" w-[94%] lg:w-[90%] xl:w-[1100px] mx-auto">
           <div className=" grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-10">

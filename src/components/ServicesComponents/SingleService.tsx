@@ -3,22 +3,14 @@ import { Card } from "flowbite-react";
 import PrimaryButton from "../ui/PrimaryButton";
 import Image from "next/image";
 import { useAppDispatch } from "@/redux/hooks";
-import { addServiceId } from "@/redux/features/appointments/appointmentsSlice";
+import { addService } from "@/redux/features/appointments/appointmentsSlice";
 import Link from "next/link";
 
 
 const SingleService = ({ service }: any) => {
-
     const dispatch = useAppDispatch()
 
-    const addServiceToSlice =() => {
-        const payload = {
-            serviceId: service?.id
-        }
-
-        dispatch(addServiceId(payload))
-    };
-
+    
   console.log(service);
   return (
     <div>
@@ -32,7 +24,7 @@ const SingleService = ({ service }: any) => {
                 Price: ${service.price}
             </p>
             <div className="mt-4">
-            <Link href={`/services/datepicker`}> <div onClick={addServiceToSlice}> <PrimaryButton>Book Now</PrimaryButton></div></Link>
+            <Link href={`/appointments/datepicker`}> <div onClick={()=> dispatch(addService(service))}> <PrimaryButton>Book Now</PrimaryButton></div></Link>
             </div>
         </p>
       </Card>

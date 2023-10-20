@@ -5,8 +5,9 @@ import { useForm } from "react-hook-form";
 import Link from "next/link";
 import { useRegisterUserMutation } from "@/redux/features/user/userApi";
 import Loading from "@/app/loading";
-import { useAppSelector } from "@/redux/hooks";
+import { useAppDispatch, useAppSelector } from "@/redux/hooks";
 import { useRouter } from "next/navigation";
+import { addUserAccessToken } from "@/redux/features/user/userTokenSlice";
 
 const Register = () => {
   const imageStyle = {
@@ -15,6 +16,7 @@ const Register = () => {
     backgroundPosition: "center",
     height: "100%",
   };
+  const dispatch = useAppDispatch();
 
   const [registerUser, { data, isLoading, error }]: any = useRegisterUserMutation();
 
@@ -44,6 +46,7 @@ const Register = () => {
 
   };
 
+  dispatch(addUserAccessToken(data?.data?.accessToken))
   if(token){
     router.push('/');
   }

@@ -44,7 +44,7 @@ const Hero = () => {
               <p className="hidden md:block md:bl mt-5 text-sm font-semibold">
                 Broadway St, NYC. Appointment: 855 100 4444
               </p>
-              <Link href={'/services'}><button className="bg-white text-black px-5 py-3 rounded mt-10 uppercase font-semibold">
+              <Link href={'/appointments'}><button className="bg-white text-black px-5 py-3 rounded mt-10 uppercase font-semibold">
                 Make Appointment
               </button></Link>
             </div>

@@ -14,42 +14,42 @@ import {
   HiTicket,
 } from "react-icons/hi";
 
-export default function SuperAdminSideBar() {
+export default function SuperAdminSideBar({handleToggle}:any) {
   const dispatch = useAppDispatch();
   return (
-    <div className="fixed h-screen">
-      <Sidebar className="w-[300px]" aria-label="Sidebar with multi-level dropdown example">
+    <div className="fixed top-0 bottom-0 left-0 right-0 md:right-auto h-screen">
+      <Sidebar className="w-[auto] md:w-[300px]" aria-label="Sidebar with multi-level dropdown example">
         <Sidebar.Items>
           <Sidebar.ItemGroup>
           <Link className="cursor-pointer" href={`/super-admin/dashboard`}>
-            <Sidebar.Item icon={HiChartPie}>
-              <p>Dashboard</p>
+            <Sidebar.Item onClick={handleToggle} icon={HiChartPie}>
+             <p>Dashboard</p>
             </Sidebar.Item>
             </Link>
             <Sidebar.Collapse icon={HiTable} label="Admins">
-            <Link className="cursor-pointer" href={`/super-admin/all-admins`}><Sidebar.Item>All Admins </Sidebar.Item></Link>
-            <Link className="cursor-pointer" href={`/super-admin/create-admin`}><Sidebar.Item>Create Admin</Sidebar.Item></Link>
+            <Link onClick={handleToggle}  className="cursor-pointer" href={`/super-admin/all-admins`}><Sidebar.Item>All Admins </Sidebar.Item></Link>
+            <Link onClick={handleToggle}  className="cursor-pointer" href={`/super-admin/create-admin`}><Sidebar.Item>Create Admin</Sidebar.Item></Link>
             </Sidebar.Collapse>
             <Sidebar.Collapse icon={HiUser} label="Barbers">
-            <Link className="cursor-pointer" href={`/super-admin/barber/all-barbers`}><Sidebar.Item>All Barbers</Sidebar.Item></Link>
-            <Link className="cursor-pointer" href={`/super-admin/barber/create-barber`}><Sidebar.Item href="#">Create Barber</Sidebar.Item></Link>
+            <Link onClick={handleToggle}  className="cursor-pointer" href={`/super-admin/barber/all-barbers`}><Sidebar.Item>All Barbers</Sidebar.Item></Link>
+            <Link onClick={handleToggle}  className="cursor-pointer" href={`/super-admin/barber/create-barber`}><Sidebar.Item href="#">Create Barber</Sidebar.Item></Link>
             </Sidebar.Collapse>
             <Sidebar.Collapse icon={HiTicket} label="Services">
-            <Link className="cursor-pointer" href={`/super-admin/services/all-services`}><Sidebar.Item href="#">All Services</Sidebar.Item></Link>
-            <Link className="cursor-pointer" href={`/super-admin/services/create-service`}><Sidebar.Item href="#">Create Service</Sidebar.Item></Link>
+            <Link onClick={handleToggle}  className="cursor-pointer" href={`/super-admin/services/all-services`}><Sidebar.Item href="#">All Services</Sidebar.Item></Link>
+            <Link onClick={handleToggle}  className="cursor-pointer" href={`/super-admin/services/create-service`}><Sidebar.Item href="#">Create Service</Sidebar.Item></Link>
             </Sidebar.Collapse>
 
-            <Sidebar.Item href="#" icon={HiBookmark}>
+            <Link onClick={handleToggle}  className="cursor-pointer" href={`/super-admin/appointments`}><Sidebar.Item onClick={handleToggle}  icon={HiBookmark}>
               <p>Appointments</p>
-            </Sidebar.Item>
-            <Sidebar.Item href="#" icon={HiClock}>
-              <p>Time Slot</p>
+            </Sidebar.Item></Link>
+            <Sidebar.Item icon={HiClock}>
+            <Link onClick={handleToggle}  className="cursor-pointer" href={`/super-admin/time-slot`}><p>Time Slot</p></Link>
             </Sidebar.Item>
             <Sidebar.Collapse icon={HiUser} label="Users">
-            <Link className="cursor-pointer" href={`/super-admin/users/all-users`}><Sidebar.Item href="#">All Users</Sidebar.Item></Link>
+            <Link onClick={handleToggle}  className="cursor-pointer" href={`/super-admin/users/all-users`}><Sidebar.Item>All Users</Sidebar.Item></Link>
             </Sidebar.Collapse>
             <div className="cursor-pointer" onClick={() => dispatch(removeUserAccessToken())}>
-            <Sidebar.Item icon={HiArrowSmRight}>
+            <Sidebar.Item  onClick={handleToggle} icon={HiArrowSmRight}>
               <p>Log Out</p>
             </Sidebar.Item>
             </div>

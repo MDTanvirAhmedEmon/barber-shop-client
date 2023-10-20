@@ -16,7 +16,7 @@ export default function SuperAdminLayout({
   const { token } = useAppSelector((state) => state.userAccessToken);
   const data: any = decodedToken(token);
 
-  if (data?.role !== "super-admin") {
+  if (data?.role !== "admin") {
     router.push("/");
   }
 
@@ -47,7 +47,7 @@ export default function SuperAdminLayout({
                 Live Site
               </Link>
             </div>
-            <div className="md:pl-5 lg:pl-0 lg:ml-4 w-[100%] md:w-auto mt-3 ">
+            <div className="pl-5 lg:pl-0 lg:ml-4 w-[100%] md:w-auto mt-3 ">
               {children}
             </div>
           </div>

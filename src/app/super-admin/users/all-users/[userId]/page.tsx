@@ -1,12 +1,14 @@
 "use client";
 import Loading from "@/app/loading";
-import {  useGetSingleAdminQuery, useUpdateAdminMutation } from "@/redux/features/admin/adminApi";
+
+import { useGetSingleUserQuery, useUpdateUserMutation } from "@/redux/features/manageUser/manageUserApi";
 import { useRouter } from "next/navigation";
 import { useForm } from "react-hook-form";
 
 const UpdateUser = ({params}:any) => {
 
-  const {data:singleUser}: any = useGetSingleAdminQuery(params.userId);
+  const {data:singleUser}: any = useGetSingleUserQuery(params.userId);
+  console.log(singleUser)
 
   const {
     register,
@@ -16,7 +18,7 @@ const UpdateUser = ({params}:any) => {
 
   const router = useRouter();
 
-  const [updateAdmin, {data, isLoading}] = useUpdateAdminMutation();;
+  const [updateUser, {data, isLoading}] = useUpdateUserMutation();;
 
   if(data) {
     router.push(`/super-admin/users/all-users`);
@@ -29,14 +31,16 @@ const UpdateUser = ({params}:any) => {
         phone: data.phone,
         role: "customer",
         password: data.password,
-        profileImage: data.profileImage,
-        address: data.address,
-        gender: data.gender,
-        maritalStatus: data.maritalStatus
+        customerProfile: {
+            profileImage: data.profileImage,
+            address: data.address,
+            gender: data.gender,
+            maritalStatus: data.maritalStatus
+        }
       },
       id: params.userId
     };
-    updateAdmin(userInfo)
+    updateUser(userInfo)
     console.log(userInfo);
   };
   if(isLoading){
@@ -109,10 +113,9 @@ const UpdateUser = ({params}:any) => {
               <input
                 className="border p-3 rounded-lg mt-2"
                 type="number"
-                {...register("profileImage", { required: true })}
+                {...register("profileImage")}
                 id=""
                 defaultValue={singleUser?.data?.customerProfile?.profileImage}
-                required
                 placeholder="Optional"
               />
             </div>

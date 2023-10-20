@@ -2,28 +2,28 @@ import { PayloadAction, createSlice } from "@reduxjs/toolkit";
 
 interface IAppointments {
     appointmentDate: string,
-    customerId: string,
-    barberId: string,
-    serviceId: string,
-    timeSlotId: string
+    customer: any,
+    barber: any,
+    service: any,
+    timeSlot: any
 }
 
 const initialState: IAppointments = {
     appointmentDate: "",
-    customerId: "",
-    barberId: "",
-    serviceId: "",
-    timeSlotId: ""
+    customer: null,
+    barber: null,
+    service: null,
+    timeSlot: null
 };
 const appointmentsSlice = createSlice({
     name: 'appointments',
     initialState,
     reducers: {
-        addCustomerId: (state, action: PayloadAction<{ customerId: string }>) => {
-            state.customerId = action.payload.customerId;
+        addCustomer: (state, action: PayloadAction<any>) => {
+            state.customer = action.payload;
         },
-        addServiceId: (state, action: PayloadAction<{ serviceId: string }>) => {
-            state.serviceId = action.payload.serviceId;
+        addService: (state, action: PayloadAction<any>) => {
+            state.service = action.payload;
         },
         addAppointmentDate: (state, action: PayloadAction<{ appointmentDate: string | undefined }>) => {
 
@@ -31,29 +31,29 @@ const appointmentsSlice = createSlice({
                 state.appointmentDate = action.payload.appointmentDate;
             }
         },
-        addBarberId: (state, action: PayloadAction<{ barberId: string | undefined }>) => {
+        addBarber: (state, action: PayloadAction<any>) => {
 
-            if(action.payload.barberId){
-                state.barberId = action.payload.barberId;
+            if(action.payload){
+                state.barber = action.payload;
             }
         },
-        addTimeSlotId: (state, action: PayloadAction<{ timeSlotId: string | undefined }>) => {
+        addTimeSlot: (state, action: PayloadAction<any>) => {
 
-            if(action.payload.timeSlotId){
-                state.timeSlotId = action.payload.timeSlotId;
+            if(action.payload){
+                state.timeSlot = action.payload;
             }
         },
         clearAppointmentData: (state) => {
             state.appointmentDate = "",
-            state.customerId = "",
-            state.barberId = "",
-            state.serviceId = "",
-            state.timeSlotId = ""
+            state.customer = null,
+            state.barber = null,
+            state.service = null,
+            state.timeSlot = null
         },
         
 
     }
 });
 
-export const { addServiceId, addAppointmentDate, addBarberId, addTimeSlotId, addCustomerId } = appointmentsSlice.actions;
+export const { addService, addAppointmentDate, addBarber, addTimeSlot, addCustomer,clearAppointmentData } = appointmentsSlice.actions;
 export default appointmentsSlice.reducer;

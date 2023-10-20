@@ -1,26 +1,25 @@
 "use client";
 
-import { useDeleteAdminMutation } from "@/redux/features/admin/adminApi";
 import { Button, Modal, Table } from "flowbite-react";
 import { useState } from "react";
 import Link from "next/link";
 import { useDeleteBarberMutation } from "@/redux/features/barber/barberApi";
-
-
+import Loading from "@/app/loading";
 
 const SingleBarberAdmin = ({ barber }: any) => {
   const [openModal, setOpenModal] = useState<string | undefined>();
   const props = { openModal, setOpenModal };
 
-  const [deleteBarber, { data, isLoading, error }] = useDeleteBarberMutation( );
+  const [deleteBarber, { isLoading, error }] = useDeleteBarberMutation( );
   const handleDeleteBarber = () => {
     deleteBarber(barber.id);
   };
-
+  if(isLoading){
+    return <Loading></Loading>
+  }
 
   return (
     <>
-
       <Table.Row className="bg-white dark:border-gray-700 dark:bg-gray-800 w-[100%]">
         <Table.Cell className="whitespace-nowrap font-medium text-gray-900 dark:text-white">
           {barber.fullName}
@@ -36,7 +35,7 @@ const SingleBarberAdmin = ({ barber }: any) => {
               <p>Edit</p>
             </Link>
             <p >
-                <p className="font-medium text-red-600 hover:underline cursor-pointer" color="red" onClick={() => props.setOpenModal("pop-up")}>
+                <p className="font-medium ml-7 md:ml-0 text-red-600 hover:underline cursor-pointer" color="red" onClick={() => props.setOpenModal("pop-up")}>
                   DELETE
                 </p>
             </p>

@@ -46,7 +46,7 @@ const UpdateBarber = ({params}:any) => {
 
 
   return (
-    <div className="w-auto md:w-auto mx-24 mt-20 px-4 md:px-10 py-14 shadow-xl bg-[#ffffffb5] rounded-lg">
+    <div className="w-auto md:w-auto mx-4 md:mx-24 mt-20 px-4 md:px-10 py-14 shadow-xl bg-[#ffffffb5] rounded-lg">
       <p className="text-3xl text-center font-bold">Change Info As Your Need</p>
 
       <form onSubmit={handleSubmit(formSubmit)} className="w-auto  md:px-0">

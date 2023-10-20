@@ -5,6 +5,7 @@ import { useState } from "react";
 import Link from "next/link";
 import { useDeleteServiceMutation } from "@/redux/features/service/serviceApi";
 import Image from "next/image";
+import Loading from "@/app/loading";
 
 const AdminSingleService = ({ service }: any) => {
   const [openModal, setOpenModal] = useState<string | undefined>();
@@ -15,6 +16,11 @@ const AdminSingleService = ({ service }: any) => {
   const handleDeleteAdmin = () => {
     deleteService(service.id);
   };
+
+  if(isLoading){
+    return <Loading></Loading>
+  }
+
 
   return (
     <>

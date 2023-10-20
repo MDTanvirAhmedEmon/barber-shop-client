@@ -4,6 +4,7 @@ import { useDeleteAdminMutation } from "@/redux/features/admin/adminApi";
 import { Button, Modal, Table } from "flowbite-react";
 import { useState } from "react";
 import Link from "next/link";
+import Loading from "@/app/loading";
 
 
 
@@ -16,6 +17,9 @@ const SingleAdmin = ({ admin }: any) => {
     deleteAdmin(admin.id);
   };
 
+  if(isLoading){
+    return <Loading></Loading>
+  }
 
   return (
     <>
@@ -35,7 +39,7 @@ const SingleAdmin = ({ admin }: any) => {
               <p>Edit</p>
             </Link>
             <p >
-                <p className="font-medium text-red-600 hover:underline cursor-pointer" color="red" onClick={() => props.setOpenModal("pop-up")}>
+                <p className="font-medium text-red-600 hover:underline cursor-pointer ml-6 md:ml-0" color="red" onClick={() => props.setOpenModal("pop-up")}>
                   DELETE
                 </p>
             </p>
@@ -61,7 +65,6 @@ const SingleAdmin = ({ admin }: any) => {
               <Button
                 color="failure"
                 onClick={() => props.setOpenModal(undefined)}
-
               >
                 Yes, I am sure
               </Button>

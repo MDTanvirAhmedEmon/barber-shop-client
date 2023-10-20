@@ -13,12 +13,13 @@ const AllAdmins = () => {
   return (
     <div>
       <p className="mb-5 text-2xl">All Admins</p>
+      <div className=" overflow-x-auto">
       <div className="mr-5">
-        <Table hoverable>
-          <Table.Head>
-            <Table.HeadCell>Name</Table.HeadCell>
-            <Table.HeadCell>Email</Table.HeadCell>
-            <Table.HeadCell>phone</Table.HeadCell>
+        <Table className="" hoverable>
+          <Table.Head className="">
+            <Table.HeadCell className="w-auto">Name</Table.HeadCell>
+            <Table.HeadCell className="w-auto">Email</Table.HeadCell>
+            <Table.HeadCell className="w-auto">phone</Table.HeadCell>
             <Table.HeadCell>
               <span className="sr-only">Edit</span>
             </Table.HeadCell>
@@ -30,6 +31,7 @@ const AllAdmins = () => {
           </Table.Body>
         </Table>
       </div>
+    </div>
     </div>
   );
 };

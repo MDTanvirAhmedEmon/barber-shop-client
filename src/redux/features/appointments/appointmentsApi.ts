@@ -16,7 +16,14 @@ const appointmentsApi = api.injectEndpoints({
             body: data,
           }),
         }),
+        createAppointment: builder.mutation({
+          query: (data) => ({
+            url: `/appointments/make-appointment`,
+            method: 'POST',
+            body: data,
+          }),
+        }),
       }),
 })
 
-export const { useGetAllServicesQuery, useGetAllBarberQuery, useGetAvailableTileSlotMutation } = appointmentsApi;
+export const { useGetAllServicesQuery, useGetAllBarberQuery, useGetAvailableTileSlotMutation, useCreateAppointmentMutation } = appointmentsApi;

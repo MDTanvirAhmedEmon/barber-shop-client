@@ -1,7 +1,6 @@
 "use client";
 
-import { removeUserAccessToken } from "@/redux/features/user/userTokenSlice";
-import { useAppDispatch, useAppSelector } from "@/redux/hooks";
+import {  useAppSelector } from "@/redux/hooks";
 import { decodedToken } from "@/utils/jwt";
 import { Bars3CenterLeftIcon, XMarkIcon } from "@heroicons/react/24/solid";
 import Link from "next/link";
@@ -11,7 +10,7 @@ const Header = () => {
   const { token } = useAppSelector((state) => state.userAccessToken);
   const { role }: any = decodedToken(token);
   console.log(role);
-  const dispatch = useAppDispatch();
+
   const router = useRouter();
 
   const [menu, setMenu] = useState(false);
@@ -31,28 +30,26 @@ const Header = () => {
                 <Link href={"/"} className="cursor-pointer">
                   Home
                 </Link>
-                <Link onClick={() => dispatch(removeUserAccessToken())} href={"/about"} className="cursor-pointer">
-                  About
-                </Link>
+
                 {!token && (
-                  <Link href={"/services"} className="cursor-pointer">
-                    Services
+                  <Link href={"/appointments"} className="cursor-pointer">
+                    Appointments
                   </Link>
                 )}
 
                 {token && role === "customer" ? (
                   <>
-                    <Link href={"/services"} className="cursor-pointer">
-                      Services
+                    <Link href={"/appointments"} className="cursor-pointer">
+                    Appointments
                     </Link>
-                    <Link href={"/profile"} className="cursor-pointer">
+                    <Link href={"/profile/personal-details"} className="cursor-pointer">
                       Profile
                     </Link>
                   </>
                 ) : role === "admin" ? (
                   <>
-                    <Link href={"/services"} className="cursor-pointer">
-                      Services
+                    <Link href={"/appointments"} className="cursor-pointer">
+                    Appointments
                     </Link>
 
                     <Link href="/admin" className="cursor-pointer">
@@ -61,8 +58,8 @@ const Header = () => {
                   </>
                 ) : role === "super-admin" ? (
                   <>
-                    <Link href={"/services"} className="cursor-pointer">
-                      Services
+                    <Link href={"/appointments"} className="cursor-pointer">
+                    Appointments
                     </Link>
 
                     <Link href="/super-admin/dashboard" className="cursor-pointer">
@@ -112,34 +109,27 @@ const Header = () => {
                 >
                   Home
                 </Link>
-                <Link
-                  href={"/about"}
-                  className="cursor-pointer"
-                  onClick={() => setMenu(!menu)}
-                >
-                  About
-                </Link>
                 {!token && (
                   <Link
-                    href={"/services"}
+                    href={"/appointments"}
                     onClick={() => setMenu(!menu)}
                     className="cursor-pointer"
                   >
-                    Services
+                    Appointments
                   </Link>
                 )}
 
                 {token && role === "customer" ? (
                   <>
                     <Link
-                      href={"/services"}
+                      href={"/appointments"}
                       onClick={() => setMenu(!menu)}
                       className="cursor-pointer"
                     >
-                      Services
+                      Appointments
                     </Link>
                     <Link
-                      href={"/profile"}
+                      href={"/profile/personal-details"}
                       onClick={() => setMenu(!menu)}
                       className="cursor-pointer"
                     >
@@ -149,15 +139,33 @@ const Header = () => {
                 ) : role === "admin" ? (
                   <>
                     <Link
-                      href={"/services"}
+                      href={"/appointments"}
                       onClick={() => setMenu(!menu)}
                       className="cursor-pointer"
                     >
-                      Services
+                      Appointments
                     </Link>
 
                     <Link
                       href="/admin"
+                      onClick={() => setMenu(!menu)}
+                      className="cursor-pointer"
+                    >
+                      Admin Panel
+                    </Link>
+                  </>
+                ) : role === "super-admin" ? (
+                  <>
+                    <Link
+                      href={"/appointments"}
+                      onClick={() => setMenu(!menu)}
+                      className="cursor-pointer"
+                    >
+                      Appointments
+                    </Link>
+
+                    <Link
+                      href="/super-admin/dashboard"
                       onClick={() => setMenu(!menu)}
                       className="cursor-pointer"
                     >

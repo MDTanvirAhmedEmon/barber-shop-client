@@ -3,7 +3,6 @@ import Header from "@/components/Shared/Header";
 import PrimaryButton from "@/components/ui/PrimaryButton";
 import { addAppointmentDate } from "@/redux/features/appointments/appointmentsSlice";
 import { useAppDispatch } from "@/redux/hooks";
-import { Progress } from "flowbite-react";
 import Link from "next/link";
 import { useState } from "react";
 import { DayPicker } from "react-day-picker";
@@ -23,6 +22,16 @@ const DatePicker = () => {
 
     dispatch(addAppointmentDate(payload))
 };
+const today = new Date();
+today.setHours(0, 0, 0, 0); 
+
+
+const isPastDay = (day:any) => {
+  const selectedDay = new Date(day);
+  selectedDay.setHours(0, 0, 0, 0); 
+  return selectedDay < today;
+};
+
 
   return (
     <div>
@@ -35,18 +44,19 @@ const DatePicker = () => {
 
       <div className="container mx-auto py-20">
       <h1 className="text-center  mb-10 text-5xl font-bold">
-              Select Your Date
+              Select A Date
             </h1>
         <div className="flex items-center justify-center">
           <DayPicker
             mode="single"
             selected={selected}
             onSelect={setSelected}
+            disabled={isPastDay}
           />
 
           </div>
           {
-            selected && <div onClick={addDateToSlice} className="text-center"><Link href={`/services/datepicker/barber`}><PrimaryButton>Next</PrimaryButton></Link></div>
+            selected && <div onClick={addDateToSlice} className="text-center"><Link href={`/appointments/datepicker/barber`}><PrimaryButton>Next</PrimaryButton></Link></div>
             
           }
       </div>

@@ -9,6 +9,7 @@ import {
   useGetAvailableTileSlotMutation,
 } from "@/redux/features/appointments/appointmentsApi";
 import { useAppSelector } from "@/redux/hooks";
+import { useRouter } from "next/navigation";
 import { useState } from "react";
 
 const Barber = () => {
@@ -28,14 +29,19 @@ const Barber = () => {
   const [getAvailableTileSlot, { data: TimeSlot, isLoading: loading }] =
     useGetAvailableTileSlotMutation();
 
-  const infoForAvailableTileSlot = {
-    appointmentDate: appointments.appointmentDate,
-    barberId: appointments.barberId,
-  };
-
-  const handleAvailableTileSlot = () => {
+  const handleAvailableTileSlot = (id: any) => {
+    const infoForAvailableTileSlot = {
+      appointmentDate: appointments.appointmentDate,
+      barberId: id,
+    };
     getAvailableTileSlot(infoForAvailableTileSlot);
   };
+
+  const router = useRouter();
+
+  if(!appointments.appointmentData && !appointments.service){
+    router.push('/');
+  }
 
   // Loading 
   if(isLoading){
@@ -64,11 +70,11 @@ const Barber = () => {
           <Header></Header>
         </div>
         <div>
-          <div className="container mx-auto py-20">
-            <h1 className="text-center mb-24 text-5xl font-bold">
+          <div className="md:w-[900px] mx-auto py-20">
+            <h1 className="text-center mb-5 md:mb-24 text-3xl md:text-5xl font-bold">
               Choose A Barber
             </h1>
-            <div className="flex justify-center space-x-10">
+            <div className="grid grid-cols-1 md:grid-cols-3 justify-center md:space-x-10">
               {data?.data.map((barber: any) => (
                 <SingleBarber
                   key={barber.id}
@@ -81,9 +87,9 @@ const Barber = () => {
             </div>
           </div>
         </div>
-        <div className="w-[800px] mx-auto">
+        <div className="w-auto lg:w-[800px] mx-auto">
           {selectedBarber && (
-            <p className="text-center mb-5 text-5xl font-bold">
+            <p className="text-center mb-5 text-3xl md:text-5xl font-bold">
               Select Available Time
             </p>
           )}
