@@ -21,6 +21,8 @@ Super Admin
 1. Super Admin can create, delete, update an admin
 2. Super Admin has all permissions
 3. Super Admin can create barber, services,time slot and manage appointment status
-   <!-- super admin logIn info -->
+
+super admin logIn info 
+=========
    emonsuper@gmail.com
    password:12345
