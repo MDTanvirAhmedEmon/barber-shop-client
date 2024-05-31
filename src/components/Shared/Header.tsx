@@ -42,7 +42,7 @@ const Header = () => {
                     <Link href={"/appointments"} className="cursor-pointer">
                     Appointments
                     </Link>
-                    <Link href={"/profile/personal-details"} className="cursor-pointer">
+                    <Link href={"/profile/my-appointments"} className="cursor-pointer">
                       Profile
                     </Link>
                   </>
@@ -62,7 +62,7 @@ const Header = () => {
                     Appointments
                     </Link>
 
-                    <Link href="/super-admin/dashboard" className="cursor-pointer">
+                    <Link href="/super-admin" className="cursor-pointer">
                       Admin Panel
                     </Link>
                   </>
@@ -129,7 +129,7 @@ const Header = () => {
                       Appointments
                     </Link>
                     <Link
-                      href={"/profile/personal-details"}
+                      href={"/profile/my-appointments"}
                       onClick={() => setMenu(!menu)}
                       className="cursor-pointer"
                     >
@@ -165,7 +165,7 @@ const Header = () => {
                     </Link>
 
                     <Link
-                      href="/super-admin/dashboard"
+                      href="/super-admin"
                       onClick={() => setMenu(!menu)}
                       className="cursor-pointer"
                     >

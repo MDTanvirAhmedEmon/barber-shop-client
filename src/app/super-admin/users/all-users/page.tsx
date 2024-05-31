@@ -2,7 +2,7 @@
 "use client";
 import Loading from "@/app/loading";
 import ManageSingleUser from "@/components/ManageUserComponents/ManageSingleUser";
-import { Pagination } from "flowbite-react";
+// import { Pagination } from "flowbite-react";
 import { useState } from "react";
 
 import { useGetAllUsersQuery } from "@/redux/features/manageUser/manageUserApi";
@@ -34,11 +34,11 @@ const AllUsers = () => {
       </div>
 
       <div className="my-14 overflow-x-auto">
-        <Pagination
+        {/* <Pagination
           currentPage={currentPage}
           onPageChange={onPageChange}
           totalPages={10}
-        />
+        /> */}
       </div>
     </div>
   );

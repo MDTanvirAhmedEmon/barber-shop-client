@@ -30,7 +30,7 @@ const Hero = () => {
               {/* mobile hero text */}
 
               <div className="md:hidden">
-                <h1 className="text-4xl font-bold mt-5">Get Your tyle</h1>
+                <h1 className="text-4xl font-bold mt-5">Get Your style</h1>
                 <h1 className="text-4xl font-bold mt-3">Your Deserve</h1>
 
                 <p className=" md:bl mt-5 text-lg font-semibold">

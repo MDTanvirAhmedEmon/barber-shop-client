@@ -25,7 +25,7 @@ const Checkout = () => {
     handleSubmit,
   } = useForm();
 
-  const [createAppointment, { data, isLoading }] =
+  const [createAppointment, { data, isLoading, isSuccess }] =
     useCreateAppointmentMutation();
 
   const appointmentData = {
@@ -58,7 +58,7 @@ const Checkout = () => {
     );
   }
   const router = useRouter();
-  if(data) {
+  if(isSuccess) {
     router.push('/thank-you');
   }
 

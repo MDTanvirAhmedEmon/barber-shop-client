@@ -21,9 +21,11 @@ export default function SuperAdminSideBar({handleToggle}:any) {
       <Sidebar className="w-[auto] md:w-[300px]" aria-label="Sidebar with multi-level dropdown example">
         <Sidebar.Items>
           <Sidebar.ItemGroup>
-          <Link className="cursor-pointer" href={`/super-admin/dashboard`}>
+          <Link className="cursor-pointer" href={`/super-admin`}>
             <Sidebar.Item onClick={handleToggle} icon={HiChartPie}>
+            <Link onClick={handleToggle}  className="cursor-pointer" href={`/super-admin`}>
              <p>Dashboard</p>
+             </Link>
             </Sidebar.Item>
             </Link>
             <Sidebar.Collapse icon={HiTable} label="Admins">

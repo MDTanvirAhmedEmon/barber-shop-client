@@ -1,10 +1,23 @@
 "use client";
 import { useGetSingleCustomerInfoQuery } from "@/redux/features/user/userApi";
 import React from "react";
+import { ThreeDots } from "react-loader-spinner";
 
 const PersonalDetails = () => {
   const { data, isLoading } = useGetSingleCustomerInfoQuery(undefined);
-  console.log(data);
+  if(isLoading) {
+    <div className="flex justify-center items-center">
+    <ThreeDots
+      height="80"
+      width="80"
+      radius="9"
+      color="#14100C"
+      ariaLabel="three-dots-loading"
+      wrapperStyle={{}}
+      visible={true}
+    />
+  </div>
+  }
   return (
     <div className="mx-4 mg:mx-0">
 

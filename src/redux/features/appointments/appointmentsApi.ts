@@ -23,7 +23,10 @@ const appointmentsApi = api.injectEndpoints({
             body: data,
           }),
         }),
+        getBarberAppointments: builder.query({
+          query: () => '/appointments/get-barber-appointment',
+        }),
       }),
 })
 
-export const { useGetAllServicesQuery, useGetAllBarberQuery, useGetAvailableTileSlotMutation, useCreateAppointmentMutation } = appointmentsApi;
+export const { useGetAllServicesQuery, useGetAllBarberQuery, useGetAvailableTileSlotMutation, useCreateAppointmentMutation, useGetBarberAppointmentsQuery } = appointmentsApi;

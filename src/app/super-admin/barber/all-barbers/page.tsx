@@ -1,6 +1,7 @@
 "use client";
 import Loading from "@/app/loading";
-import SingleBarberAdmin from "@/components/BarberComponents/SingleBarberAdmin";
+import SingleBarberAdmin from "@/components/BarberCompoenets/SingleBarberAdmin";
+
 import { useGetAllBarberQuery } from "@/redux/features/appointments/appointmentsApi";
 import { Table } from "flowbite-react";
 

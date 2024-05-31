@@ -24,7 +24,7 @@ const SingleTimeSlot = ({ slot }: any) => {
       <div className="mt-5 ">
         <div>
           <div
-            className={`text-black border-2 border-primaryColor text-center py-2 px-1 relative`}
+            className={`text-black border-2 border-primaryColor text-left md:text-center py-2 px-1 relative`}
           >
             {slot.startTime} - {slot.endTime}
             <div  onClick={() => props.setOpenModal("pop-up")} className="text-red-900 bg-red-300 font-bold text-center py-2 px-4  absolute right-0 top-0 bottom-0 cursor-pointer">
