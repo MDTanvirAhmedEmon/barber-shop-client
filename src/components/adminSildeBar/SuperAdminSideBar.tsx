@@ -10,7 +10,7 @@ import {
   HiClock,
   HiBookmark,
   HiUser,
-  HiTable,
+
   HiTicket,
 } from "react-icons/hi";
 
@@ -28,10 +28,7 @@ export default function SuperAdminSideBar({handleToggle}:any) {
              </Link>
             </Sidebar.Item>
             </Link>
-            <Sidebar.Collapse icon={HiTable} label="Admins">
-            <Link onClick={handleToggle}  className="cursor-pointer" href={`/super-admin/all-admins`}><Sidebar.Item>All Admins </Sidebar.Item></Link>
-            <Link onClick={handleToggle}  className="cursor-pointer" href={`/super-admin/create-admin`}><Sidebar.Item>Create Admin</Sidebar.Item></Link>
-            </Sidebar.Collapse>
+
             <Sidebar.Collapse icon={HiUser} label="Barbers">
             <Link onClick={handleToggle}  className="cursor-pointer" href={`/super-admin/barber/all-barbers`}><Sidebar.Item>All Barbers</Sidebar.Item></Link>
             <Link onClick={handleToggle}  className="cursor-pointer" href={`/super-admin/barber/create-barber`}><Sidebar.Item href="#">Create Barber</Sidebar.Item></Link>

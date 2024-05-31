@@ -46,16 +46,6 @@ const Header = () => {
                       Profile
                     </Link>
                   </>
-                ) : role === "admin" ? (
-                  <>
-                    <Link href={"/appointments"} className="cursor-pointer">
-                    Appointments
-                    </Link>
-
-                    <Link href="/admin" className="cursor-pointer">
-                      Admin Panel
-                    </Link>
-                  </>
                 ) : role === "super-admin" ? (
                   <>
                     <Link href={"/appointments"} className="cursor-pointer">
@@ -134,24 +124,6 @@ const Header = () => {
                       className="cursor-pointer"
                     >
                       Profile
-                    </Link>
-                  </>
-                ) : role === "admin" ? (
-                  <>
-                    <Link
-                      href={"/appointments"}
-                      onClick={() => setMenu(!menu)}
-                      className="cursor-pointer"
-                    >
-                      Appointments
-                    </Link>
-
-                    <Link
-                      href="/admin"
-                      onClick={() => setMenu(!menu)}
-                      className="cursor-pointer"
-                    >
-                      Admin Panel
                     </Link>
                   </>
                 ) : role === "super-admin" ? (
